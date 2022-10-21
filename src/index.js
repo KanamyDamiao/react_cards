@@ -1,13 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root from './routes/root';
+import ErrorPage from './components/ErrorPage';
+import FetchNews from './components/FetchNews';
+import FetchProducts from './components/FetchProduct';
+import Contact from './components/Contact';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/noticias',
+    element: <FetchNews />
+  },
+  {
+    path: '/produtos',
+    element: <FetchProducts />
+  },
+  {
+    path: '/contato',
+    element: <Contact />
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

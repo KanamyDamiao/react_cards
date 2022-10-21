@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Card,
   CardActionArea,
@@ -23,7 +22,6 @@ const FetchProducts = () => {
       .then((respData) => {
         setData(respData.products);
         setIsLoading(false);
-        console.log(data);
       })
       .catch((error) => {
         console.warn(error, "Deu erro mané!");
@@ -37,7 +35,13 @@ const FetchProducts = () => {
         <div>Carregando</div>
       ) : (
         data.map((products) => (
-          <Grid item xs={10} md={8} lg={4}>
+          <Grid 
+            item 
+            xs={10} 
+            md={8} 
+            lg={4}
+            key={products.id}
+            >
             <Card
               key={products.id}
               style={{
@@ -55,7 +59,7 @@ const FetchProducts = () => {
                   image={products.thumbnail}
                   alt={products.brand}
                 />
-                <CardContent style={{flex:"1 1 auto"}}>
+                <CardContent style={{ flex: "1 1 auto" }}>
                   <Typography gutterBottom variant="h5" component="div">
                     {products.title}
                   </Typography>
@@ -64,9 +68,14 @@ const FetchProducts = () => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
+              <CardActions
+                style={{ display: "flex", justifyContent: "space-around" }}
+              >
                 <Button size="small" color="primary">
                   Buy
+                </Button>
+                <Button size="small" color="primary">
+                  Read more!
                 </Button>
               </CardActions>
             </Card>
